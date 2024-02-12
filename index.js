@@ -1,9 +1,8 @@
 // const debugApp = require('debug')
-const serverless = require("serverless-http");
 const express = require("express");
 const app = express();
 const router = express.Router();
-// app.use(express.json());
+app.use(express.json());
 router.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -48,9 +47,6 @@ router.get("/", (req, res) => {
   res.send(users);
   console.log("sent response ");
 });
-app.use("/.netlify/functions/api", router);
+app.use("/", router);
 const port = process.env.PORT || 3000;
-// app.listen(port, () => console.log(`Listening on port ${port}...`));
-
-module.exports = app;
-module.exports.handler = serverless(app);
+app.listen(port, () => console.log(`Listening on port ${port}...`));
