@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "netlify-lambda serve src",
-    "netlify-build": "netlify-lambda build src "
+    "deploy": "vercel --prod"
   },
   "keywords": [],
   "author": "",
