@@ -1,9 +1,30 @@
-// const debugApp = require('debug')
+const debugApp = require("debug")("app: index");
 const express = require("express");
+const dotenv = require("dotenv");
 const app = express();
-const router = express.Router();
+const mongoose = require("mongoose");
+
+// -- ROUTES ---
+const { skillsRouter } = require("./routes/skills.js");
+
 app.use(express.json());
-router.use((req, res, next) => {
+
+dotenv.config();
+const connectionString = process.env.DB_STRING;
+const PORT = process.env.PORT || 3000;
+
+mongoose
+  .connect(connectionString, {
+    autoIndex: true,
+  })
+  .then((msg) => {
+    console.log("Successfully Connected to MongoDB !!!");
+  })
+  .catch((err) => {
+    console.log("An Error Occurred ", err);
+  });
+
+app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -13,43 +34,18 @@ router.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "X-Requested-With,content-type"
   );
-  console.log("new connection received from ");
+  console.log("new connection received");
   next();
 });
-const users = [
-  {
-    id: 1,
-    name: "John",
-    email: "<EMAIL>",
-    password: "<PASSWORD>",
-  },
-  {
-    id: 2,
-    name: "Prosper",
-    email: "<EMAIL>",
-    password: "<PASSWORD>",
-  },
-  {
-    id: 3,
-    name: "Seun",
-    email: "<EMAIL>",
-    password: "<PASSWORD>",
-  },
-  {
-    id: 4,
-    name: "Tochukwu",
-    email: "<EMAIL>",
-    password: "<PASSWORD>",
-  },
-];
-router.get("/", (req, res) => {
+
+app.get("/", (req, res) => {
   res.status(200);
-  res.send(users);
+  res.send("This is an majorly an api to support prospercoded website ");
   console.log("sent response ");
 });
-app.use("/", router);
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+app.use("/skills", skillsRouter);
 
-export default app;
+app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
+
+exports.default = app;
