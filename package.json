@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "14.x"
-  },
   "scripts": {
-    "start": "node ../../../../e:/PROGRAMMING FILES/PLAYGROUND/netlify&node/src/index.js",
-    "deploy": "vercel --prod",
-    "vercel-build": "echo hello"
+    "start": "node index.js",
+    "deploy": "vercel --prod"
   },
   "keywords": [],
   "author": "",
