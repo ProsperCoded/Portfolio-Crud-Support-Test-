@@ -7,8 +7,9 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "node index.js",
-    "deploy": "vercel --prod"
+    "start": "node ../../../../e:/PROGRAMMING FILES/PLAYGROUND/netlify&node/src/index.js",
+    "deploy": "vercel --prod",
+    "vercel-build": "echo hello"
   },
   "keywords": [],
   "author": "",
