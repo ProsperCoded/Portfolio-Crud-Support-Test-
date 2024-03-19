@@ -47,7 +47,6 @@ app.get("/", async (req, res) => {
     path: "technologies",
   });
 
-  // return res.status(200).json(projectsCollection);
   const projects = projectsCollection.map((project) => {
     return {
       title: project.title,
@@ -183,7 +182,6 @@ app.put(
   ]),
 
   async (req, res) => {
-    // debug("preparing to update", req.body, req.files);
     debug("files details", req.files);
     const id = req.params.id;
     const { error } = validateProjectCreation(req.body);

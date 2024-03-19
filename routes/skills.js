@@ -90,7 +90,6 @@ app.get("/", async (req, res) => {
 });
 app.post("/create", async (req, res) => {
   debug("preparing to upload skill", req.body);
-  // return res.json({ msg: "succesful" });
   const { error } = validateSkill(req.body);
   if (error) {
     return res.status(400).send(error);

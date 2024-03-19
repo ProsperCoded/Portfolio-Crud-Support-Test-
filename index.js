@@ -45,7 +45,6 @@ app.use("*", (req, res, next) => {
     // "content-custom"
   );
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  // res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader("Access-Control-Max-Age", 3600);
   // Handle preflight requests (OPTIONS method)
   if (req.method === "OPTIONS") {
@@ -72,8 +71,9 @@ app.use(express.json());
 app.use("/public", express.static("public/"));
 app.get("/", (req, res) => {
   res.status(200);
-  res.send("This is an majorly an api to support Prosper Coded website ");
-  // res.send(req.get("host"));
+  res.send(
+    "This is an majorly an api to support Prosper Coded website visit the website here https://prospercoded.com"
+  );
 });
 
 // --- LISTENER & ROUTERS---

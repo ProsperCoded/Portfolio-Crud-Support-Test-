@@ -57,8 +57,7 @@ app.post("/register", async (req, res) => {
     });
   }
   const token = jwt.sign({ _id: admin._id }, process.env.JWT_PRIVATE_KEY);
-  // const cookieString = genCookieString(token, 7, "jwtToken");
-  // res.setHeader("Set-Cookie", cookieString);
+
   res.setHeader("x-auth-token", token);
   return res.status(200).json({
     message: "You are registered as an admin successfully",
@@ -67,9 +66,6 @@ app.post("/register", async (req, res) => {
 app.post("/auto-login", async (req, res) => {
   let token = req.headers["x-auth-token"];
   debug("auto-login received a request");
-  // debug("headers", req.headers);
-  // let token = req.cookies.jwtToken;
-  // debug("user token: ", token);
   if (token && token != "null") {
     const authorization = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
     if (authorization.isAdmin) {
@@ -96,15 +92,12 @@ app.post("/login", async (req, res) => {
       message: "Invalid username or password *",
     });
   }
-  // const pass_hashed = await bcrypt.hash(password, SALT);
   const validAdmin = await bcrypt.compare(password, admin.password);
   if (validAdmin) {
     const token = jwt.sign(
       { _id: admin._id, isAdmin: true },
       process.env.JWT_PRIVATE_KEY
     );
-    // const cookieString = genCookieString(token, 7, "jwtToken");
-    // res.setHeader("Set-Cookie", cookieString);
     res.setHeader("x-auth-token", token);
     return res.status(200).json({
       message: "Login successfully",
@@ -115,7 +108,6 @@ app.post("/login", async (req, res) => {
     message: "Invalid username or password",
   });
 });
-// Route to delete unused files, prepoluated by mistake
 app.delete("/unused", async (req, res) => {
   // Delete Unused Projects Files
   let ProjectModel = require("./../models/ProjectModel");
@@ -128,7 +120,6 @@ app.delete("/unused", async (req, res) => {
   let INTERFACE_DIR_FILES = fs.readdirSync(INTERFACES_ROOT);
   projects.forEach((p) => {
     activeInterfaces.push(p.interface.filename);
-    // fs.rm(ICONS_ROOT + );
     activeIcons.push(p.icon.filename);
   });
   ICONS_DIR_FILES.forEach((f) => {

@@ -6,7 +6,6 @@ const fs = require("fs");
 const Joi = require("joi");
 const _ = require("lodash");
 const multer = require("multer");
-const fileName = "image";
 const URL = require("url");
 const IMAGES_ROOT = "public/tech/";
 // --- MODELS ---
@@ -122,9 +121,9 @@ app.delete("/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const technology = await TechnologiesModel.findByIdAndDelete(id);
-    fs.rm(technology.image.filename, ()=>{
-      debug('technology image deleted succesfully')
-    })
+    fs.rm(technology.image.filename, () => {
+      debug("technology image deleted succesfully");
+    });
     res.status(200).json({
       message: "Technology deleted Successfully",
     });
