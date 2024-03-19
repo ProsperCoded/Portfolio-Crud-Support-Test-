@@ -16,7 +16,6 @@ const IMAGES_ROOT = "public/tech/";
 // const SkillsModel = require("../models/SkillsModel.js");
 // mongoose.connection.addListener("connected", async () => {
 //   const skills = await SkillsModel.find().populate({ path: "technology" });
-//   console.log("All skills :", skills);
 // });
 // --- FILE UPLOAD(STORAGE) ---
 const Storage = multer.memoryStorage({
@@ -96,7 +95,6 @@ app.post("/create", async (req, res) => {
   }
 
   async function storeSkill(mastery, technologyId, category) {
-    // console.log(technologyId);
     const newSkill = new SkillsModel({
       mastery,
       technology: mongoose.Types.ObjectId.createFromHexString(technologyId),

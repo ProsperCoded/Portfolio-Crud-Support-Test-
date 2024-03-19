@@ -13,6 +13,6 @@ const TechnologiesSchema = mongoose.Schema({
   },
 });
 module.exports = TechnologiesModel = mongoose.model(
-  "Technologies",
+  "technologies",
   TechnologiesSchema
 );

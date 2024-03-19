@@ -12,7 +12,7 @@ const SkillSchema = mongoose.Schema({
   },
   technology: {
     type: ObjectId,
-    ref: "Technologies",
+    ref: "technologies",
     required: true,
     unique: true,
   },
@@ -23,4 +23,4 @@ const SkillSchema = mongoose.Schema({
   },
 });
 
-module.exports = SkillModel = mongoose.model("Skills", SkillSchema);
+module.exports = SkillModel = mongoose.model("skills", SkillSchema);

@@ -7,7 +7,6 @@ const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
 const AuthAdminModel = require("../models/AuthAdminModel");
 const cookie = require("cookie");
-// const jwt = require("jsonwebtoken");
 dotenv.config();
 const SALT = bcrypt.genSaltSync(parseInt(process.env.SALT_TOKEN));
 const jwt = require("jsonwebtoken");
@@ -145,17 +144,5 @@ app.delete("/unused", async (req, res) => {
   });
   res.send("deleted unused  files");
 });
-function genCookieString(token, duration = -1, name, ...options) {
-  const expirationDate = new Date();
-  expirationDate.setDate(expirationDate.getDate() + duration);
 
-  const cookieOptions = {
-    secureCookie: false,
-    httpOnly: false,
-    expires: expirationDate,
-    ...options,
-  };
-  const cookieString = cookie.serialize(name, token, cookieOptions);
-  return cookieString;
-}
 module.exports.AuthRouter = app;

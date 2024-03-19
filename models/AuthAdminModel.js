@@ -12,4 +12,4 @@ const AdminSchema = mongoose.Schema({
   },
 });
 
-module.exports = AuthAdminModel = mongoose.model("Admins", AdminSchema);
+module.exports = AuthAdminModel = mongoose.model("admins", AdminSchema);

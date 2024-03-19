@@ -22,7 +22,7 @@ const ProjectSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  technologies: [{ type: ObjectId, ref: "Technologies", required: true }],
+  technologies: [{ type: ObjectId, ref: "technologies", required: true }],
   icon: {
     filename: String,
     mimetype: String,
@@ -33,4 +33,4 @@ const ProjectSchema = mongoose.Schema({
   },
 });
 // const Image = mongoose.model('Image', ImageSchema);
-module.exports = ProjectModel = mongoose.model("Projects", ProjectSchema);
+module.exports = ProjectModel = mongoose.model("projects", ProjectSchema);

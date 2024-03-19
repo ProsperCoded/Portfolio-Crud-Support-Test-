@@ -42,6 +42,7 @@ function validateProjectCreation(object) {
   });
   return schema.validate(object);
 }
+
 app.get("/", async (req, res) => {
   const projectsCollection = await ProjectModel.find().populate({
     path: "technologies",

@@ -56,6 +56,7 @@ app.use("*", (req, res, next) => {
 
   next();
 });
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 // disable the function below first to just test what happens without it.
