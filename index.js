@@ -10,7 +10,6 @@ const path = require("path");
 const mongoose = require("mongoose");
 // -- ROUTES ---
 const { skillsRouter } = require("./routes/skills.js");
-// const { TechnologiesRouter } = require("./routes/Technologies.js");
 const { TechnologiesRouter } = require("./routes/Technologies.js");
 const { ProjectRouter } = require("./routes/Projects.js");
 const { AuthRouter } = require("./routes/AuthAdmin.js");
@@ -72,12 +71,13 @@ app.use(
 // --- HTTP Handlers ---
 app.use(express.json());
 // Setting public directory
-// app.use("/public", express.static("public/"));
-express.static(path.join(__dirname, "public"));
+// app.use("/public", express.static("public"));
+// debug("dirname ", path.join(__dirname, "public"));
+app.use("/public", express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.status(200);
   res.send(
-    "This is an majorly an api to support Prosper Coded website visit the website here https://prospercoded.com"
+    "This is an majorly an api to support Prosper Coded website visit the website here <a href='https://prospercoded.com'> https://prospercoded.com </a>"
   );
 });
 
