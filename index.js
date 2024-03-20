@@ -56,6 +56,8 @@ app.use("*", (req, res, next) => {
 
   next();
 });
+// For Express protocol setting
+app.set("trust proxy", true);
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -69,7 +71,8 @@ app.use(
 // --- HTTP Handlers ---
 app.use(express.json());
 // Setting public directory
-app.use("/public", express.static("public/"));
+// app.use("/public", express.static("public/"));
+express.static(path.join(__dirname, "public"));
 app.get("/", (req, res) => {
   res.status(200);
   res.send(

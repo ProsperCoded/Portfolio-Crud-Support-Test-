@@ -52,13 +52,13 @@ app.get("/", async (req, res) => {
     name: 1,
     "image.filename": 1,
   });
-  // debug(TechCollection);
-  // return res.json(TechCollection);
+
+  const protocol = req.headers["x-forwarded-proto"] || req.protocol;
   const Technologies = TechCollection.map((tech) => {
     return {
       id: tech._id,
       name: tech.name,
-      image: `${req.protocol}://${req.get("host")}/${IMAGES_ROOT}${
+      image: `${protocol}://${req.get("host")}/${IMAGES_ROOT}${
         tech.image.filename
       }`,
     };
