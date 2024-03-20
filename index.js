@@ -6,6 +6,7 @@ dotenv.config();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
+const path = require("path");
 const mongoose = require("mongoose");
 // -- ROUTES ---
 const { skillsRouter } = require("./routes/skills.js");
