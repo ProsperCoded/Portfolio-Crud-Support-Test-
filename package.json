@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./index.js",
     "deploy": "vercel --prod",
-    "dev": "cross-env DEBUG=app:* nodemon ./index.js"
+    "dev": "cross-env DEBUG=app:* NODE_ENV=development nodemon ./index.js",
+    "prod": "cross-env NODE_ENV=production node ./index.js"
   },
   "keywords": [],
   "author": "",

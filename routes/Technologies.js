@@ -122,7 +122,7 @@ app.delete("/:id", async (req, res) => {
   try {
     const technology = await TechnologiesModel.findByIdAndDelete(id);
     fs.rm(technology.image.filename, () => {
-      debug("technology image deleted succesfully");
+      debug("technology image deleted successfully");
     });
     res.status(200).json({
       message: "Technology deleted Successfully",

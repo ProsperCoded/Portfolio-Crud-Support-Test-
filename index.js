@@ -86,6 +86,9 @@ app.use("/skills", skillsRouter);
 app.use("/technologies", TechnologiesRouter);
 app.use("/projects", ProjectRouter);
 app.use("/admin", AuthRouter);
-app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
+process.env.NODE_ENV !== "production" &&
+  app.listen(PORT, () =>
+    console.log(`Listening on  http://localhost:${PORT}...`)
+  );
 
 module.exports.default = app;
