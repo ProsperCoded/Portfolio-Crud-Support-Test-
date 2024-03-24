@@ -20,6 +20,9 @@ const PORT = process.env.PORT || 3000;
 mongoose
   .connect(connectionString, {
     autoIndex: true,
+    connectTimeoutMS: 50000,
+    serverSelectionTimeoutMS: 50000,
+    socketTimeoutMS: 50000,
   })
   .then(() => {
     console.log("Successfully Connected to MongoDB !!!");
